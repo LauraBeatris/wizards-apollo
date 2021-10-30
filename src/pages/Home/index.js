@@ -1,3 +1,5 @@
 import React from 'react'
 
-export function Home () { return <p>Home</p> }
+import { PageLayout } from '../../components/PageLayout'
+
+export function Home () { return <PageLayout /> }
