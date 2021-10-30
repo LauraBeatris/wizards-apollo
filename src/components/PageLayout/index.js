@@ -10,15 +10,17 @@ export function PageLayout ({ children }) {
     <Flex
       width='100vw'
       padding='5'
-      minHeight='100vh'
-      bgGradient='linear(to-t, #B6C0E7, #D8DCEB)'
+      height='100vh'
+      bgGradient='linear(to-t, gray.gradient1, gray.gradient2)'
     >
       <Container
         maxW='container.lg'
+        overflow='scroll'
+        position='relative'
         boxShadow='xl'
-        centerContent
         borderRadius='lg'
-        bgGradient='linear(to-t, #101993, #3163D2)'
+        bgGradient='linear(to-t, blue.gradient1, blue.gradient2)'
+        centerContent
       >
         <Header />
         {children}
