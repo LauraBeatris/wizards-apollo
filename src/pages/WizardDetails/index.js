@@ -5,17 +5,22 @@ import { Link, useParams } from 'react-router-dom'
 
 import { ArrowBackIcon } from '@chakra-ui/icons'
 
+import { Helmet } from 'react-helmet'
+
 import { PageLayout } from '../../components/PageLayout'
 import { useGetWizardQuery } from '../../hooks/graphql/useGetWizardQuery'
 import { WizardBadge } from '../../components/WizardBadge'
+import { useFetchPolicyStore } from '../../hooks/stores/useFetchPolicyStore'
 
 export function WizardDetails () {
   const { id } = useParams()
 
+  const fetchPolicy = useFetchPolicyStore(state => state.fetchPolicy)
   const { data } = useGetWizardQuery({
     variables: {
       id: Number(id)
-    }
+    },
+    fetchPolicy
   })
 
   const {
@@ -26,6 +31,10 @@ export function WizardDetails () {
 
   return (
     <PageLayout>
+      <Helmet>
+        <title>Apollo Wizard - {wizardName ?? ''}</title>
+      </Helmet>
+
       <Flex width='100%'>
         <HStack
           width='100%'
@@ -59,11 +68,11 @@ export function WizardDetails () {
       <Image
         src={imageUrl}
         alt={houseName}
-        width='100%'
-        height='150'
         marginTop='2'
         objectFit='cover'
         borderRadius='5'
+        marginRight='auto'
+        width={['100%', '40%', '40%']}
       />
     </PageLayout>
   )
