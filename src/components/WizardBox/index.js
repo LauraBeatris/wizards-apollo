@@ -1,16 +1,11 @@
 import React from 'react'
 import { Text } from '@chakra-ui/react'
 import { Image } from '@chakra-ui/image'
-import { Badge, Box, VStack } from '@chakra-ui/layout'
+import { Box, VStack } from '@chakra-ui/layout'
 import { EditIcon } from '@chakra-ui/icons'
 import { Link } from 'react-router-dom'
 
-const mapColorSchemeToHouseName = {
-  Gryffindor: 'red',
-  Slytherin: 'green',
-  Ravenclaw: 'blue',
-  Hufflepuff: 'yellow'
-}
+import { WizardBadge } from '../WizardBadge'
 
 export function WizardBox ({
   wizardId,
@@ -39,14 +34,7 @@ export function WizardBox ({
           spacing='1'
           marginTop='1'
         >
-          <Badge
-            size='small'
-            fontSize='x-small'
-            maxWidth='100%'
-            colorScheme={mapColorSchemeToHouseName[houseName]}
-          >
-            {houseName}
-          </Badge>
+          <WizardBadge houseName={houseName} />
 
           <VStack
             align='flex-start'

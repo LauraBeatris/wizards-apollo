@@ -2,7 +2,7 @@ import gql from 'graphql-tag'
 import { useQuery } from '@apollo/client'
 
 const listWizardsQuery = gql`
-  query ListWizardsQuery {
+  query ListWizards {
     wizards {
       id
       name

@@ -36,6 +36,7 @@ export function Home () {
               data?.wizards?.map(({ id, name, image_url: imageUrl, house }) => (
                 <WizardBox
                   key={id}
+                  wizardId={id}
                   houseName={house.name}
                   wizardName={name}
                   wizardImageUrl={imageUrl}
