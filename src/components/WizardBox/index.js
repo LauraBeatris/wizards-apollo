@@ -28,7 +28,11 @@ export function WizardBox ({
       >
         <Image
           src={wizardImageUrl}
+          width='100%'
+          height='100'
+          objectFit='cover'
           borderRadius='md'
+          objectPosition='top'
         />
         <VStack
           align='flex-start'
@@ -37,7 +41,8 @@ export function WizardBox ({
         >
           <Badge
             size='small'
-            fontSize='x-small' c
+            fontSize='x-small'
+            maxWidth='100%'
             colorScheme={mapColorSchemeToHouseName[houseName]}
           >
             {houseName}
@@ -45,13 +50,14 @@ export function WizardBox ({
 
           <VStack
             align='flex-start'
-            spacing='1'
+            spacing='0'
             marginTop='1'
           >
             <Text
               fontSize='md'
               marginTop='auto'
               fontWeight='bold'
+              noOfLines={['2', '1']}
             >
               {wizardName}
             </Text>

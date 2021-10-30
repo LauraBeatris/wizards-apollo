@@ -1,12 +1,20 @@
 import React from 'react'
-import { SimpleGrid } from '@chakra-ui/layout'
+import { Box, SimpleGrid } from '@chakra-ui/layout'
+import { Skeleton } from '@chakra-ui/react'
 
 import { PageLayout } from '../../components/PageLayout'
 import { WizardBox } from '../../components/WizardBox'
-import { useListWizardsQuery } from '../../hooks/useListWizardsQuery'
+import { useListWizardsQuery } from '../../hooks/graphql/useListWizardsQuery'
+import { useFetchPolicyStore } from '../../hooks/stores/useFetchPolicyStore'
+
+const skeletonQuantity = [...Array(16).keys()]
 
 export function Home () {
-  const { data } = useListWizardsQuery()
+  const fetchPolicy = useFetchPolicyStore(state => state.fetchPolicy)
+
+  const { data, loading } = useListWizardsQuery({
+    fetchPolicy: fetchPolicy
+  })
 
   return (
     <PageLayout>
@@ -16,14 +24,25 @@ export function Home () {
         spacingX='40px'
         spacingY='20px'
       >
-        {data?.wizards?.map(({ id, name, image_url: imageUrl, house }) => (
-          <WizardBox
-            key={id}
-            houseName={house.name}
-            wizardName={name}
-            wizardImageUrl={imageUrl}
-          />
-        ))}
+        {loading
+          ? (
+              skeletonQuantity.map((index) => (
+                <Skeleton key={index}>
+                  <Box height='200' />
+                </Skeleton>
+              ))
+            )
+          : (
+              data?.wizards?.map(({ id, name, image_url: imageUrl, house }) => (
+                <WizardBox
+                  key={id}
+                  houseName={house.name}
+                  wizardName={name}
+                  wizardImageUrl={imageUrl}
+                />
+              ))
+            )}
+
       </SimpleGrid>
     </PageLayout>
   )
