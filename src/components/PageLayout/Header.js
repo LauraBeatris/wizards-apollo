@@ -1,8 +1,9 @@
 import React from 'react'
 import { Text } from '@chakra-ui/react'
-import { VStack, HStack } from '@chakra-ui/layout'
+import { Flex, VStack } from '@chakra-ui/layout'
 
 import { FetchPolicySelector } from '../FetchPolicySelector'
+import { CreateWizard } from '../CreateWizard'
 
 const bgGradient = 'linear(to-l, blue.gradient2, blue.gradient2)'
 
@@ -23,17 +24,26 @@ export function Header () {
       borderBottomRightRadius='5'
       backgroundColor='inherit'
     >
-      <HStack>
-        <Text fontSize='2xl'>🧙</Text>
-        <Text
-          fontSize='2xl'
-          textShadow='lg'
-          fontWeight='bold'
-          variant='with-gray-gradient'
-        >
-          Apollo Wizard
-        </Text>
-      </HStack>
+      <Flex width='100%' justify='space-between'>
+        <Flex>
+          <Text
+            fontSize='2xl'
+            marginRight='1'
+          >
+            🧙
+          </Text>
+          <Text
+            fontSize='2xl'
+            textShadow='lg'
+            fontWeight='bold'
+            variant='with-gray-gradient'
+          >
+            Apollo Wizard
+          </Text>
+        </Flex>
+
+        <CreateWizard />
+      </Flex>
 
       <Text variant='with-gray-gradient'>
         Inspect the caching magic by wizards
