@@ -2,7 +2,7 @@
    <img src=".github/docs/logo.png" width="100"/>
 </p>
 
-# Wizards Apollo 🧙🏻
+# Wizards Apollo 
 > Application used for my talk about caching management with Apollo Client 3
 
 [![Author](https://img.shields.io/badge/author-LauraBeatris-191F2B?style=flat-square)](https://github.com/LauraBeatris)

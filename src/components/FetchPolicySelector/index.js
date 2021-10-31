@@ -116,7 +116,7 @@ export function FetchPolicySelector () {
           marginTop='2'
           fontWeight='medium'
         >
-          Select a cache fetch policy:
+          Select a fetch policy:
         </Text>
 
         {fetchPolicies.map(({

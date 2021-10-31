@@ -19,8 +19,8 @@ export function Header () {
       marginBottom='15'
       position='sticky'
       bgGradient={bgGradient}
-      borderLeftRadius='5'
-      borderRightRadius='5'
+      borderBottomLeftRadius='5'
+      borderBottomRightRadius='5'
       backgroundColor='inherit'
     >
       <HStack>
