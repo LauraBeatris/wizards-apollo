@@ -7,6 +7,10 @@ const getWizardQuery = gql`
       id
       name
       image_url
+      comments {
+        id
+        text
+      }
       house {
         id
         name
