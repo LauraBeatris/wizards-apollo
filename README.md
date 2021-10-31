@@ -1,5 +1,20 @@
+<p align="left">
+   <img src=".github/docs/logo.png" width="100"/>
+</p>
+
 # Wizards Apollo 🧙🏻
-Application used for my talk about caching management with Apollo Client 3
+> Application used for my talk about caching management with Apollo Client 3
+
+[![Author](https://img.shields.io/badge/author-LauraBeatris-191F2B?style=flat-square)](https://github.com/LauraBeatris)
+[![Languages](https://img.shields.io/github/languages/count/LauraBeatris/wizards-apollo?color=%23191F2B&style=flat-square)](#)
+[![Stars](https://img.shields.io/github/stars/LauraBeatris/wizards-apollo?color=191F2B&style=flat-square)](https://github.com/LauraBeatris/wizards-apollo/stargazers)
+[![Forks](https://img.shields.io/github/forks/LauraBeatris/wizards-apollo?color=%23191F2B&style=flat-square)](https://github.com/LauraBeatris/wizards-apollo/network/members)
+
+<br />
+<p align="center">
+  <img align="center" width="350" src=".github/docs/home.png" alt="Color Mode" border="0">
+</p>
+
 
 ## Resources
 - [Apollo Day Talk](https://www.youtube.com/watch?v=PcAl3lRF4fQ&t=8s)
