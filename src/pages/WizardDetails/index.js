@@ -1,9 +1,10 @@
 import React from 'react'
 import { Image, Skeleton } from '@chakra-ui/react'
-import { HStack, Flex, Text } from '@chakra-ui/layout'
-import { Link, useParams } from 'react-router-dom'
-import { ArrowBackIcon } from '@chakra-ui/icons'
+import { HStack, Stack, Flex, Text } from '@chakra-ui/layout'
+import { DeleteIcon, ArrowBackIcon } from '@chakra-ui/icons'
+import { Button } from '@chakra-ui/button'
 import { Helmet } from 'react-helmet'
+import { Link, useParams } from 'react-router-dom'
 
 import { PageLayout } from '../../components/PageLayout'
 import { useGetWizardQuery } from '../../hooks/graphql/useGetWizardQuery'
@@ -12,6 +13,64 @@ import { useFetchPolicyStore } from '../../hooks/stores/useFetchPolicyStore'
 import { CommentsTable } from '../../components/CommentsTable'
 
 const textPlaceholderForSkeletons = 'Placeholder'
+
+function WizardDetailsHeader ({ isLoaded, houseName, wizardName }) {
+  return (
+    <Flex width='100%' align='center'>
+      <Stack
+        width='100%'
+        spacing={['0', '2']}
+        justify='flex-start'
+        direction={['column', 'row']}
+      >
+        <Skeleton isLoaded={isLoaded}>
+          <Text
+            variant='with-gray-gradient'
+            fontWeight='bold'
+          >
+            {wizardName ?? textPlaceholderForSkeletons}
+          </Text>
+        </Skeleton>
+
+        <Skeleton isLoaded={isLoaded}>
+          <WizardBadge houseName={houseName ?? textPlaceholderForSkeletons} />
+        </Skeleton>
+      </Stack>
+
+      <Stack
+        align={['flex-end', 'center']}
+        spacing={['0', '2']}
+        direction={['column', 'row']}
+      >
+        <Button
+          size='sm'
+          variant='unstyled'
+        >
+          <HStack
+            color='gray.gradient2'
+            spacing='0'
+          >
+            <DeleteIcon marginRight='1' />
+            <Text>Delete</Text>
+          </HStack>
+        </Button>
+
+        <Link
+          to='/'
+          marginRight='auto'
+        >
+          <HStack
+            color='gray.gradient2'
+            spacing='0'
+          >
+            <ArrowBackIcon />
+            <Text>Back</Text>
+          </HStack>
+        </Link>
+      </Stack>
+    </Flex>
+  )
+}
 
 export function WizardDetails () {
   const { id } = useParams()
@@ -39,39 +98,11 @@ export function WizardDetails () {
         <title>Apollo Wizard {wizardName ? `- ${wizardName}` : ''}</title>
       </Helmet>
 
-      <Flex width='100%'>
-        <HStack
-          width='100%'
-          spacing='2'
-          justify='flex-start'
-        >
-          <Skeleton isLoaded={isLoaded}>
-            <Text
-              variant='with-gray-gradient'
-              fontWeight='bold'
-            >
-              {wizardName ?? textPlaceholderForSkeletons}
-            </Text>
-          </Skeleton>
-
-          <Skeleton isLoaded={isLoaded}>
-            <WizardBadge houseName={houseName ?? textPlaceholderForSkeletons} />
-          </Skeleton>
-        </HStack>
-
-        <Link
-          to='/'
-          marginRight='auto'
-        >
-          <HStack
-            color='gray.gradient2'
-            spacing='0'
-          >
-            <ArrowBackIcon />
-            <Text>Back</Text>
-          </HStack>
-        </Link>
-      </Flex>
+      <WizardDetailsHeader
+        isLoaded={isLoaded}
+        houseName={houseName}
+        wizardName={wizardName}
+      />
 
       <Image
         src={imageUrl}
