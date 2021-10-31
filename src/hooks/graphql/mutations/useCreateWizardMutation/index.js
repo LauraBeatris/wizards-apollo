@@ -3,7 +3,7 @@ import gql from 'graphql-tag'
 
 const createWizardMutation = gql`
   mutation CreateWizard ($wizardData: wizards_insert_input!) {
-    insert_wizards_one(object: $object) {
+    insert_wizards_one(object: $wizardData) {
       id
       name
     }
