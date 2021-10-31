@@ -7,7 +7,7 @@ import { Helmet } from 'react-helmet'
 import { Link, useParams } from 'react-router-dom'
 
 import { PageLayout } from '../../components/PageLayout'
-import { useGetWizardQuery } from '../../hooks/graphql/useGetWizardQuery'
+import { useGetWizardQuery } from '../../hooks/graphql/queries/useGetWizardQuery'
 import { WizardBadge } from '../../components/WizardBadge'
 import { useFetchPolicyStore } from '../../hooks/stores/useFetchPolicyStore'
 import { CommentsTable } from '../../components/CommentsTable'

@@ -4,7 +4,7 @@ import { Skeleton } from '@chakra-ui/react'
 
 import { PageLayout } from '../../components/PageLayout'
 import { WizardBox } from '../../components/WizardBox'
-import { useListWizardsQuery } from '../../hooks/graphql/useListWizardsQuery'
+import { useListWizardsQuery } from '../../hooks/graphql/queries/useListWizardsQuery'
 import { useFetchPolicyStore } from '../../hooks/stores/useFetchPolicyStore'
 
 const skeletonQuantity = [...Array(16).keys()]
