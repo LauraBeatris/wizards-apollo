@@ -7,6 +7,8 @@ export function CommentsTable ({
   comments,
   isLoaded
 }) {
+  const shouldShowEmptyMessage = comments?.length === 0 && isLoaded
+
   return (
     <Skeleton
       flex={1}
@@ -45,6 +47,8 @@ export function CommentsTable ({
               <Text>{text}</Text>
             </HStack>
           ))}
+
+          {shouldShowEmptyMessage && <Text>No comments</Text>}
         </VStack>
       </VStack>
     </Skeleton>
