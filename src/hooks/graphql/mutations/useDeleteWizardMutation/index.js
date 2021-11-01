@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/client'
 
 const deleteWizardMutation = gql`
   mutation DeleteWizard ($id: Int!) {
-    delete_wizards_by_pk(id: $id) {
+    delete_wizard_by_pk(id: $id) {
       id
       name
     }

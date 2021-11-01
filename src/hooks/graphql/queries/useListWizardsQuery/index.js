@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client'
 
 const listWizardsQuery = gql`
   query ListWizards {
-    wizards {
+    wizard {
       id
       name
       image_url

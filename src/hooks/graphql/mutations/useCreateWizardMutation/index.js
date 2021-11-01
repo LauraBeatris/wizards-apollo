@@ -2,8 +2,8 @@ import { useMutation } from '@apollo/client'
 import gql from 'graphql-tag'
 
 const createWizardMutation = gql`
-  mutation CreateWizard ($wizardData: wizards_insert_input!) {
-    insert_wizards_one(object: $wizardData) {
+  mutation CreateWizard ($wizardData: wizard_insert_input!) {
+    insert_wizard_one(object: $wizardData) {
       id
       name
     }

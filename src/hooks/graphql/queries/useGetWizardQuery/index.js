@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client'
 
 const getWizardQuery = gql`
   query GetWizard($id: Int!) {
-    wizard: wizards_by_pk(id: $id) {
+    wizard: wizard_by_pk(id: $id) {
       id
       name
       image_url
