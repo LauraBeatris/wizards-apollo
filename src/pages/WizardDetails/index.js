@@ -13,6 +13,7 @@ import { WizardBadge } from '../../components/WizardBadge'
 import { useFetchPolicyStore } from '../../hooks/stores/useFetchPolicyStore'
 import { CommentsTable } from '../../components/CommentsTable'
 import { HOME_PAGE_PATH } from '../../constants/routesPaths'
+import { getIsQueryLoaded } from '../../config/apolloClient'
 
 const textPlaceholderForSkeletons = 'Placeholder'
 
@@ -87,7 +88,7 @@ export function WizardDetails () {
   const { id } = useParams()
 
   const fetchPolicy = useFetchPolicyStore(state => state.fetchPolicy)
-  const { data, loading } = useGetWizardQuery({
+  const { data, loading, error } = useGetWizardQuery({
     variables: {
       id: Number(id)
     },
@@ -102,7 +103,12 @@ export function WizardDetails () {
     comments
   } = data?.wizard ?? {}
 
-  const isLoaded = !loading
+  const isLoaded = getIsQueryLoaded({
+    data,
+    error,
+    loading,
+    queryKey: 'wizard'
+  })
 
   return (
     <PageLayout>

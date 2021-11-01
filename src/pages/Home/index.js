@@ -6,14 +6,22 @@ import { PageLayout } from '../../components/PageLayout'
 import { WizardBox } from '../../components/WizardBox'
 import { useListWizardsQuery } from '../../hooks/graphql/queries/useListWizardsQuery'
 import { useFetchPolicyStore } from '../../hooks/stores/useFetchPolicyStore'
+import { getIsQueryLoaded } from '../../config/apolloClient'
 
 const skeletonQuantity = [...Array(16).keys()]
 
 export function Home () {
   const fetchPolicy = useFetchPolicyStore(state => state.fetchPolicy)
 
-  const { data, loading } = useListWizardsQuery({
+  const { data, error, loading } = useListWizardsQuery({
     fetchPolicy: fetchPolicy
+  })
+
+  const isLoading = !getIsQueryLoaded({
+    data,
+    error,
+    loading,
+    queryKey: 'wizards'
   })
 
   return (
@@ -24,7 +32,7 @@ export function Home () {
         spacingX='40px'
         spacingY='20px'
       >
-        {loading
+        {isLoading
           ? (
               skeletonQuantity.map((index) => (
                 <Skeleton key={index}>
