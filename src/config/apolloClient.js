@@ -7,9 +7,3 @@ export const client = new ApolloClient({
     'x-hasura-admin-secret': process.env.REACT_APP_API_ADMIN_SECRET
   }
 })
-
-export const getIsQueryLoaded = ({ data, queryKey, error, loading }) => {
-  const isDataLoaded = data?.[queryKey] && !error
-
-  return isDataLoaded || !loading
-}

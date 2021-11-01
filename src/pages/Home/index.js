@@ -6,7 +6,7 @@ import { PageLayout } from '../../components/PageLayout'
 import { WizardBox } from '../../components/WizardBox'
 import { useListWizardsQuery } from '../../hooks/graphql/queries/useListWizardsQuery'
 import { useFetchPolicyStore } from '../../hooks/stores/useFetchPolicyStore'
-import { getIsQueryLoaded } from '../../config/apolloClient'
+import { getIsQueryLoaded } from '../../queryUtils'
 
 const skeletonQuantity = [...Array(16).keys()]
 
@@ -21,7 +21,7 @@ export function Home () {
     data,
     error,
     loading,
-    queryKey: 'wizards'
+    queryKey: 'wizard'
   })
 
   return (
@@ -41,7 +41,7 @@ export function Home () {
               ))
             )
           : (
-              data?.wizards?.map(({ id, name, image_url: imageUrl, house }) => (
+              data?.wizard?.map(({ id, name, image_url: imageUrl, house }) => (
                 <WizardBox
                   key={id}
                   wizardId={id}

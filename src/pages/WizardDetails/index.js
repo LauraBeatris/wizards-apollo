@@ -13,7 +13,7 @@ import { WizardBadge } from '../../components/WizardBadge'
 import { useFetchPolicyStore } from '../../hooks/stores/useFetchPolicyStore'
 import { CommentsTable } from '../../components/CommentsTable'
 import { HOME_PAGE_PATH } from '../../constants/routesPaths'
-import { getIsQueryLoaded } from '../../config/apolloClient'
+import { getIsQueryLoaded } from '../../queryUtils'
 
 const textPlaceholderForSkeletons = 'Placeholder'
 
