@@ -66,7 +66,7 @@ export function CreateWizardForm ({ onCompleted }) {
         <Input
           {...register('image_url')}
           name='image_url'
-          label='Image URL'
+          label='Image sURL'
           error={errors?.image_url?.message}
           placeholder='www.hogwarts-instagram.com/picture.png'
         />
@@ -81,9 +81,10 @@ export function CreateWizardForm ({ onCompleted }) {
 
       <Button
         type='submit'
-        colorScheme='blue'
-        marginY='4'
         width='100%'
+        marginY='4'
+        variant='with-blue-gradient'
+        colorScheme='blue'
       >
         Submit
       </Button>
