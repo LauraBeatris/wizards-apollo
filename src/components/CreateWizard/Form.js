@@ -61,7 +61,6 @@ export function CreateWizardForm ({ onCompleted }) {
           label='Name*'
           error={errors?.name?.message}
           placeholder='Harry Potter'
-          data-testid='recipe-name-input'
         />
         <Input
           {...register('image_url')}

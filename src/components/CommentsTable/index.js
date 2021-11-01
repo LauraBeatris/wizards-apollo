@@ -3,6 +3,8 @@ import { Flex, HStack, VStack, Text, StackDivider } from '@chakra-ui/layout'
 import { Skeleton, IconButton } from '@chakra-ui/react'
 import { PlusSquareIcon } from '@chakra-ui/icons'
 
+import { CreateComment } from '../CreateComment'
+
 export function CommentsTable ({
   comments,
   isLoaded
@@ -28,11 +30,16 @@ export function CommentsTable ({
         <Flex as='header' width='100%' align='center'>
           <Text fontWeight='bold'>Comments</Text>
 
-          <IconButton
-            icon={<PlusSquareIcon />}
-            title='Add comment'
-            marginLeft='auto'
-          />
+          <CreateComment>
+            {onOpen => (
+              <IconButton
+                icon={<PlusSquareIcon />}
+                title='Add comment'
+                marginLeft='auto'
+                onClick={onOpen}
+              />
+            )}
+          </CreateComment>
         </Flex>
 
         <VStack
