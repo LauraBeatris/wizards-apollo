@@ -24,7 +24,7 @@
 Change branches according to each topic in order to inspect the code demonstrated during the talk
 
 **Branch names are going to be added here soon - WIP**
-- How to customize key fields for caching identifiers
+- [Customize key fields for caching identifiers](https://github.com/LauraBeatris/wizards-apollo/blob/05c2c84c86785e7ca87fcd517cb2e0d537303e06/src/config/apolloClient.js#L8)
 - Differences between fetch policies options
 - How to deal with cases where the cache isn't automatically updated because the merge isn't possible (Eg: Adding or deleting items)
 - Use field policies to create custom client-side fields
