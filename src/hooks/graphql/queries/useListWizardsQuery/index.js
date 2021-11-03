@@ -2,8 +2,15 @@ import gql from 'graphql-tag'
 import { useQuery } from '@apollo/client'
 
 const listWizardsQuery = gql`
-  query ListWizards {
-    wizard {
+  query ListWizards(
+    $limit: Int = 12
+    $offset: Int = 0
+  ) {
+    wizard(
+      limit: $limit
+      offset: $offset
+      order_by: { name: asc }
+    ) {
       id
       name
       image_url
