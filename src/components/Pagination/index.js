@@ -6,13 +6,13 @@ import {
   PaginationNext,
   PaginationPrevious,
   PaginationPageGroup,
-  PaginationContainer,
-  PaginationSeparator
+  PaginationContainer
 } from '@ajna/pagination'
 import { Text } from '@chakra-ui/layout'
 
 const outerLimit = 2
 const innerLimit = 2
+const initialPage = 1
 
 export function Pagination ({
   total,
@@ -35,7 +35,7 @@ export function Pagination ({
     initialState: {
       pageSize,
       isDisabled: false,
-      currentPage: 1
+      currentPage: initialPage
     }
   })
 
@@ -53,55 +53,34 @@ export function Pagination ({
       isDisabled={isDisabled}
       onPageChange={handlePageChange}
     >
-      <PaginationContainer
-        align='center'
-        justify='space-between'
-        p={4}
-        w='full'
-      >
+      <PaginationContainer>
         <PaginationPrevious
-          _hover={{
-            bg: 'yellow.400'
-          }}
-          bg='yellow.300'
+          marginRight='1'
+          backgroundColor='gray.gradient2'
         >
           <Text>Previous</Text>
         </PaginationPrevious>
-        <PaginationPageGroup
-          isInline
-          align='center'
-          separator={
-            <PaginationSeparator
-              bg='blue.300'
-              fontSize='sm'
-              w={7}
-              jumpSize={11}
-            />
-              }
-        >
+        <PaginationPageGroup>
           {pages.map((page) => (
             <PaginationPage
-              w={7}
-              bg='red.300'
+              width='8'
+              bg='gray.gradient2'
               key={`pagination_page_${page}`}
               page={page}
               fontSize='sm'
-              _hover={{
-                bg: 'green.300'
-              }}
               _current={{
-                bg: 'green.300',
                 fontSize: 'sm',
-                w: 7
+                backgroundColor: 'yellow.300'
+              }}
+              _hover={{
+                backgroundColor: 'yellow.100'
               }}
             />
           ))}
         </PaginationPageGroup>
         <PaginationNext
-          _hover={{
-            bg: 'yellow.400'
-          }}
-          bg='yellow.300'
+          marginLeft='1'
+          backgroundColor='gray.gradient2'
         >
           <Text>Next</Text>
         </PaginationNext>
