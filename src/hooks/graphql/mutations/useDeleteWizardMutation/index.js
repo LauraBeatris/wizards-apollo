@@ -1,6 +1,8 @@
 import gql from 'graphql-tag'
 import { useMutation } from '@apollo/client'
 
+import { useRefetchWizards } from '../../refetch/useRefetchWizards'
+
 const deleteWizardMutation = gql`
   mutation DeleteWizard ($id: Int!) {
     delete_wizard_by_pk(id: $id) {
@@ -11,5 +13,14 @@ const deleteWizardMutation = gql`
 `
 
 export function useDeleteWizardMutation (mutationOptions) {
-  return useMutation(deleteWizardMutation, mutationOptions)
+  const refetchWizards = useRefetchWizards()
+
+  return useMutation(deleteWizardMutation, {
+    ...mutationOptions,
+    onCompleted: async () => {
+      mutationOptions?.onCompleted()
+
+      await refetchWizards()
+    }
+  })
 }

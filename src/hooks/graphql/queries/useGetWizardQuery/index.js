@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 import { useQuery } from '@apollo/client'
 
-const getWizardQuery = gql`
+export const getWizardQuery = gql`
   query GetWizard($id: Int!) {
     wizard: wizard_by_pk(id: $id) {
       id
