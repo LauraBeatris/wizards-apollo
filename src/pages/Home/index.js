@@ -4,16 +4,18 @@ import { Skeleton } from '@chakra-ui/react'
 
 import { PageLayout } from '../../components/PageLayout'
 import { WizardBox } from '../../components/WizardBox'
-import { useListWizardsQuery } from '../../hooks/graphql/queries/useListWizardsQuery'
+import { useListWizardsQuery, wizardsPaginationLimit } from '../../hooks/graphql/queries/useListWizardsQuery'
 import { useFetchPolicyStore } from '../../hooks/stores/useFetchPolicyStore'
 import { getIsQueryLoaded } from '../../queryUtils'
+import { Pagination } from '../../components/Pagination'
 
 const skeletonQuantity = [...Array(16).keys()]
+const wizardsPageSize = 12
 
 export function Home () {
   const fetchPolicy = useFetchPolicyStore(state => state.fetchPolicy)
 
-  const { data, error, loading } = useListWizardsQuery({
+  const { data, error, loading, fetchMore } = useListWizardsQuery({
     fetchPolicy: fetchPolicy
   })
 
@@ -23,6 +25,13 @@ export function Home () {
     loading,
     queryKey: 'wizard'
   })
+
+  const wizard = data?.wizard
+  const paginationTotal = data?.wizard_aggregate?.aggregate?.count
+
+  const handleFetchMore = ({ offset }) => {
+    fetchMore({ variables: { offset } })
+  }
 
   return (
     <PageLayout>
@@ -41,7 +50,7 @@ export function Home () {
               ))
             )
           : (
-              data?.wizard?.map(({ id, name, image_url: imageUrl, house }) => (
+              wizard?.map(({ id, name, image_url: imageUrl, house }) => (
                 <WizardBox
                   key={id}
                   wizardId={id}
@@ -52,6 +61,12 @@ export function Home () {
               ))
             )}
 
+        <Pagination
+          total={paginationTotal}
+          limit={wizardsPaginationLimit}
+          pageSize={wizardsPageSize}
+          onPageChange={handleFetchMore}
+        />
       </SimpleGrid>
     </PageLayout>
   )

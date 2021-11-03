@@ -2,19 +2,12 @@ import gql from 'graphql-tag'
 import { useQuery } from '@apollo/client'
 
 const getWizardQuery = gql`
-  query GetWizard(
-    $id: Int!
-    $limit: Int = 4
-    $offset: Int = 0
-  ) {
+  query GetWizard($id: Int!) {
     wizard: wizard_by_pk(id: $id) {
       id
       name
       image_url
-      comments(
-        limit: $limit 
-        offset: $offset
-      ) {
+      comments {
         id
         text
       }
