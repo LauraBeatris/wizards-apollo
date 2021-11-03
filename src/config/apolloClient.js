@@ -1,6 +1,18 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client'
 
-export const cache = new InMemoryCache()
+export const cache = new InMemoryCache({
+  typePolicies: {
+    wizard: {
+      fields: {
+        name: {
+          read (name) {
+            return name.toUpperCase()
+          }
+        }
+      }
+    }
+  }
+})
 
 export const client = new ApolloClient({
   uri: process.env.REACT_APP_API_URI,
