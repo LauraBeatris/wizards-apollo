@@ -25,6 +25,7 @@ Change branches according to each topic in order to inspect the code demonstrate
 
 **Branch names are going to be added here soon - WIP**
 - [Customize key fields for caching identifiers](https://github.com/LauraBeatris/wizards-apollo/blob/05c2c84c86785e7ca87fcd517cb2e0d537303e06/src/config/apolloClient.js#L8)
+- [Directly update cache after mutations][https://github.com/LauraBeatris/wizards-apollo/tree/update-local-data-without-refetch-queries] - Check mutation hooks to inspect code
 - Differences between fetch policies options
 - How to deal with cases where the cache isn't automatically updated because the merge isn't possible (Eg: Adding or deleting items)
 - Use field policies to create custom client-side fields
