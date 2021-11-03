@@ -1,5 +1,5 @@
 <p align="left">
-   <img src=".github/docs/logo.png" width="100"/>
+  <img src=".github/docs/logo.png" width="100"/>
 </p>
 
 # Wizards Apollo 
@@ -12,7 +12,8 @@
 
 <br />
 <p align="center">
-  <img align="center" width="350" src=".github/docs/home.png" alt="Color Mode" border="0">
+  <img align="center" width="350" src=".github/docs/home.png" border="0">
+  <img align="center" width="250" src=".github/docs/home-with-pagination.gif" border="0">
 </p>
 
 
