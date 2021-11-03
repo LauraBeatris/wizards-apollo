@@ -28,7 +28,7 @@ const houseOptions = [
 ]
 
 export function CreateWizardForm ({ onCompleted }) {
-  const [createWizard] = useCreateWizardMutation({
+  const [createWizard, { loading }] = useCreateWizardMutation({
     onCompleted
   })
 
@@ -84,6 +84,7 @@ export function CreateWizardForm ({ onCompleted }) {
         marginY='4'
         variant='with-blue-gradient'
         colorScheme='blue'
+        isLoading={loading}
       >
         Submit
       </Button>
