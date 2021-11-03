@@ -65,7 +65,7 @@ export function CreateWizardForm ({ onCompleted }) {
         <Input
           {...register('image_url')}
           name='image_url'
-          label='Image sURL'
+          label='Image URL'
           error={errors?.image_url?.message}
           placeholder='www.hogwarts-instagram.com/picture.png'
         />
