@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, Skeleton } from '@chakra-ui/react'
+import { Image, Skeleton, Editable, EditableInput, EditablePreview } from '@chakra-ui/react'
 import { HStack, Stack, Flex, Text } from '@chakra-ui/layout'
 import { DeleteIcon, ArrowBackIcon } from '@chakra-ui/icons'
 import { Button } from '@chakra-ui/button'
@@ -14,33 +14,46 @@ import { useFetchPolicyStore } from '../../hooks/stores/useFetchPolicyStore'
 import { CommentsTable } from '../../components/CommentsTable'
 import { HOME_PAGE_PATH } from '../../constants/routesPaths'
 import { getIsQueryLoaded } from '../../queryUtils'
+import { useUpdateWizardNameOnCache } from '../../hooks/graphql/cacheFragments/useUpdateWizardNameOnCache'
 
 const textPlaceholderForSkeletons = 'Placeholder'
 
-function WizardDetailsHeader ({ isLoaded, wizardId, houseName, wizardName }) {
+function WizardDetailsHeader ({ isLoaded, wizard }) {
   const history = useHistory()
 
   const [deleteWizard] = useDeleteWizardMutation({
     onCompleted: () => history.push(HOME_PAGE_PATH)
   })
+  const updateWizardNameOnCache = useUpdateWizardNameOnCache()
 
   const handleDeleteWizard = (id) => () => deleteWizard({ variables: { id } })
+  const handleUpdateWizardOnCache = (name) => updateWizardNameOnCache({ name, wizard })
+
+  const {
+    id,
+    name,
+    house: { name: houseName } = {}
+  } = wizard ?? {}
 
   return (
     <Flex width='100%' align='center'>
       <Stack
         width='100%'
+        align='center'
         spacing={['0', '2']}
         justify='flex-start'
         direction={['column', 'row']}
       >
         <Skeleton isLoaded={isLoaded}>
-          <Text
-            variant='with-gray-gradient'
-            fontWeight='bold'
+          <Editable
+            bgClip='text'
+            onChange={handleUpdateWizardOnCache}
+            bgGradient='linear(to-l, gray.gradient3, gray.gradient2)'
+            defaultValue={name ?? textPlaceholderForSkeletons}
           >
-            {wizardName ?? textPlaceholderForSkeletons}
-          </Text>
+            <EditablePreview />
+            <EditableInput />
+          </Editable>
         </Skeleton>
 
         <Skeleton isLoaded={isLoaded}>
@@ -56,7 +69,7 @@ function WizardDetailsHeader ({ isLoaded, wizardId, houseName, wizardName }) {
         <Button
           size='sm'
           variant='unstyled'
-          onClick={handleDeleteWizard(wizardId)}
+          onClick={handleDeleteWizard(id)}
         >
           <HStack
             color='gray.gradient2'
@@ -96,7 +109,6 @@ export function WizardDetails () {
   })
 
   const {
-    id: wizardId,
     name: wizardName,
     house: { name: houseName } = {},
     image_url: imageUrl,
@@ -117,10 +129,8 @@ export function WizardDetails () {
       </Helmet>
 
       <WizardDetailsHeader
+        wizard={data?.wizard}
         isLoaded={isLoaded}
-        wizardId={wizardId}
-        houseName={houseName}
-        wizardName={wizardName}
       />
 
       <Image
