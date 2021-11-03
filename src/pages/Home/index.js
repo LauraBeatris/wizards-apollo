@@ -44,7 +44,15 @@ export function Home () {
   }
 
   return (
-    <PageLayout>
+    <PageLayout footerContent={
+      <Pagination
+        total={paginationTotal}
+        limit={wizardsPageSize}
+        pageSize={wizardsPageSize}
+        onPageChange={handleFetchMore}
+      />
+    }
+    >
       <SimpleGrid
         w='full'
         columns={[2, null, 4]}
@@ -71,12 +79,6 @@ export function Home () {
               ))
             )}
 
-        <Pagination
-          total={paginationTotal}
-          limit={wizardsPageSize}
-          pageSize={wizardsPageSize}
-          onPageChange={handleFetchMore}
-        />
       </SimpleGrid>
     </PageLayout>
   )

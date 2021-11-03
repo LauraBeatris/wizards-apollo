@@ -5,7 +5,7 @@ import { Container } from '@chakra-ui/layout'
 import { Header } from './Header'
 import { Footer } from './Footer'
 
-export function PageLayout ({ children }) {
+export function PageLayout ({ children, footerContent }) {
   return (
     <Flex
       width='100vw'
@@ -24,7 +24,9 @@ export function PageLayout ({ children }) {
       >
         <Header />
         {children}
-        <Footer />
+        <Footer>
+          {footerContent}
+        </Footer>
       </Container>
     </Flex>
   )
