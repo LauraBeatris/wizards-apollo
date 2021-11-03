@@ -26,5 +26,5 @@
 - [Update local data - Directly update cache after mutations](https://github.com/LauraBeatris/wizards-apollo/tree/update-local-data-without-refetch-queries): Check mutation hooks to inspect code
 - [Update local data - Refetch queries after mutation](https://github.com/LauraBeatris/wizards-apollo/tree/update-local-data-with-refetch-queries): Check mutation hooks to inspect code
 - [Use field policies to create custom client-side fields](https://github.com/LauraBeatris/wizards-apollo/blob/6395f7059b56e17ef8148cd4430b52223cb9658a/src/config/apolloClient.js#L8)
-- Pagination helpers
+- [Offset-based pagination](https://github.com/LauraBeatris/wizards-apollo/tree/apply-pagination-wizards-and-comments): Inspect the field policy configurations on [apolloClient.js](https://github.com/LauraBeatris/wizards-apollo/blob/d095de555990c871dec89c3d137d7187e55e4fb6/src/config/apolloClient.js#L8) and pagination logic on [Home.js](https://github.com/LauraBeatris/wizards-apollo/blob/d095de555990c871dec89c3d137d7187e55e4fb6/src/pages/Home/index.js#L38)
 
