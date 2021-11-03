@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from 'react'
 import {
   Pagination as AjnaPagination,
@@ -24,7 +23,6 @@ export function Pagination ({
   const {
     pages,
     pagesCount,
-    offset,
     currentPage,
     setCurrentPage,
     isDisabled
@@ -42,14 +40,11 @@ export function Pagination ({
   })
 
   const handlePageChange = (nextPage) => {
-    // -> request new data using the page number
     setCurrentPage(nextPage)
 
     const offset = (limit * nextPage) - limit
     onPageChange({ offset })
   }
-
-  console.log({ offset })
 
   return (
     <AjnaPagination
@@ -69,10 +64,6 @@ export function Pagination ({
             bg: 'yellow.400'
           }}
           bg='yellow.300'
-          onClick={() =>
-            console.log(
-              'Im executing my own function along with Previous component functionality'
-            )}
         >
           <Text>Previous</Text>
         </PaginationPrevious>
@@ -81,10 +72,6 @@ export function Pagination ({
           align='center'
           separator={
             <PaginationSeparator
-              onClick={() =>
-                console.log(
-                  'Im executing my own function along with Separator component functionality'
-                )}
               bg='blue.300'
               fontSize='sm'
               w={7}
@@ -98,10 +85,6 @@ export function Pagination ({
               bg='red.300'
               key={`pagination_page_${page}`}
               page={page}
-              onClick={() =>
-                console.log(
-                  'Im executing my own function along with Page component functionality'
-                )}
               fontSize='sm'
               _hover={{
                 bg: 'green.300'
@@ -119,10 +102,6 @@ export function Pagination ({
             bg: 'yellow.400'
           }}
           bg='yellow.300'
-          onClick={() =>
-            console.log(
-              'Im executing my own function along with Next component functionality'
-            )}
         >
           <Text>Next</Text>
         </PaginationNext>

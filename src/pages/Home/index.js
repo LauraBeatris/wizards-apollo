@@ -1,22 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Box, SimpleGrid } from '@chakra-ui/layout'
 import { Skeleton } from '@chakra-ui/react'
 
 import { PageLayout } from '../../components/PageLayout'
 import { WizardBox } from '../../components/WizardBox'
-import { useListWizardsQuery, wizardsPaginationLimit } from '../../hooks/graphql/queries/useListWizardsQuery'
+import { useListWizardsQuery } from '../../hooks/graphql/queries/useListWizardsQuery'
 import { useFetchPolicyStore } from '../../hooks/stores/useFetchPolicyStore'
 import { getIsQueryLoaded } from '../../queryUtils'
 import { Pagination } from '../../components/Pagination'
 
 const skeletonQuantity = [...Array(16).keys()]
 const wizardsPageSize = 12
+const initialOffset = 0
 
 export function Home () {
+  const [offset, setOffset] = useState(initialOffset)
   const fetchPolicy = useFetchPolicyStore(state => state.fetchPolicy)
 
   const { data, error, loading, fetchMore } = useListWizardsQuery({
-    fetchPolicy: fetchPolicy
+    fetchPolicy,
+    variables: {
+      offset,
+      limit: wizardsPageSize
+    }
   })
 
   const isLoading = !getIsQueryLoaded({
@@ -30,7 +36,11 @@ export function Home () {
   const paginationTotal = data?.wizard_aggregate?.aggregate?.count
 
   const handleFetchMore = ({ offset }) => {
-    fetchMore({ variables: { offset } })
+    fetchMore({
+      variables: { offset, limit: wizardsPageSize }
+    }).then(() => {
+      setOffset(offset)
+    })
   }
 
   return (
@@ -63,7 +73,7 @@ export function Home () {
 
         <Pagination
           total={paginationTotal}
-          limit={wizardsPaginationLimit}
+          limit={wizardsPageSize}
           pageSize={wizardsPageSize}
           onPageChange={handleFetchMore}
         />
