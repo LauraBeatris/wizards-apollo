@@ -14,7 +14,7 @@ export function Home () {
   const fetchPolicy = useFetchPolicyStore(state => state.fetchPolicy)
 
   const { data, error, loading } = useListWizardsQuery({
-    fetchPolicy: fetchPolicy
+    fetchPolicy
   })
 
   const isLoading = !getIsQueryLoaded({

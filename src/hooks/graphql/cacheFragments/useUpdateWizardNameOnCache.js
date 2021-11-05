@@ -10,9 +10,6 @@ const wizardNameFragment = gql`
 
 export function useUpdateWizardNameOnCache () {
   const updateWizardNameOnCache = ({ name, wizard }) => {
-    // eslint-disable-next-line no-console
-    console.log({ name, wizard })
-
     client.writeFragment({
       id: cache.identify(wizard),
       fragment: wizardNameFragment,
